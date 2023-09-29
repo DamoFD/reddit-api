@@ -16,6 +16,11 @@
     </style>
 </head>
 <body class="antialiased">
+    @php echo 'client id: ' . config('larascord.client_id'); @endphp
+    <br />
+    @php echo 'client secret: ' . config('larascord.client_secret'); @endphp
+    <br />
+    @php echo base64_encode(config('larascord.client_id') . ':' . config('larascord.client_secret')); @endphp
 <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
     @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">

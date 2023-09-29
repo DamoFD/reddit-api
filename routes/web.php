@@ -21,6 +21,12 @@ Route::get('/', function () {
 
 Route::get('/login', [UserController::class, 'redirectToReddit'])->name('login');
 
+Route::get('/test/callback', [UserController::class, 'get'])
+    ->name('reddit.login');
+
+Route::redirect('/test/refresh-token', url('login'))
+    ->name('reddit.refresh_token');
+
 //Route::middleware('auth')->group(function () {
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //});

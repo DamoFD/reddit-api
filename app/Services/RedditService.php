@@ -48,8 +48,14 @@ class RedditService
         $response = Http::withHeaders([
             'User-Agent' => $this->tokenData['user_agent'],
             'Authorization' => 'Basic ' . base64_encode($this->tokenData['client_id'] . ':' . $this->tokenData['client_secret']),
-        ])->asForm()->post($this->tokenURL, $this->tokenData);
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ])->asForm()->post($this->tokenURL, [
+            'grant_type' => 'authorization_code',
+            'code' => $this->tokenData['code'],
+            'redirect_uri' => $this->tokenData['redirect_uri'],
+        ]);
 
+        dd($response);
         dd($response->throw());
 
         return new AccessToken(json_decode($response->body()));
